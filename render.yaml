@@ -24,8 +24,9 @@ services:
         value: "*" # You should update this with your actual domain later
 
   # Frontend: React Static Site
-  - type: static_site
+  - type: web
     name: backfrontend
+    env: static
     region: singapore
     plan: free
     buildCommand: npm install && npm run build
