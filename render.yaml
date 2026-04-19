@@ -29,7 +29,7 @@ services:
     env: static
     region: singapore
     buildCommand: npm install && npm run build
-    publishPath: build
+    staticPublishPath: build
     envVars:
       - key: REACT_APP_API_URL
         fromService:
