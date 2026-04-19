@@ -24,7 +24,7 @@ services:
         value: "*" # You should update this with your actual domain later
 
   # Frontend: React Static Site
-  - type: static
+  - type: static_site
     name: backfrontend
     region: singapore
     plan: free
