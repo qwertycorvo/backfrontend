@@ -28,7 +28,6 @@ services:
     name: backfrontend
     env: static
     region: singapore
-    plan: free
     buildCommand: npm install && npm run build
     publishPath: build
     envVars:
