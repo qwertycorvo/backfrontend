@@ -6,7 +6,8 @@ services:
     region: singapore
     plan: free
     rootDir: backend
-    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
+    preDeployCommand: python manage.py migrate
     startCommand: gunicorn core.wsgi
     envVars:
       - key: DEBUG
@@ -15,6 +16,12 @@ services:
         generateValue: true
       - key: PYTHON_VERSION
         value: 3.12.0
+      - key: DATABASE_URL
+        fromDatabase:
+          name: decibel-db
+          property: connectionString
+      - key: ALLOWED_HOSTS
+        value: "*" # You should update this with your actual domain later
 
   # Frontend: React Static Site
   - type: static
@@ -28,4 +35,9 @@ services:
         fromService:
           name: decibel-backend
           type: web
-          property: host
+          property: url
+
+databases:
+  - name: decibel-db
+    region: singapore
+    plan: free
